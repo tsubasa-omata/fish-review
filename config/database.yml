@@ -19,7 +19,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: <%= ENV['DATABASE_DEV_NAME'] %>
+  database: fish_review_development
   pool: 5
   username: <%= ENV['DATABASE_DEV_USER'] %>
   password: <%= ENV['DATABASE_DEV_PASSWORD'] %>
@@ -37,7 +37,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: <%= ENV['DATABASE_DEV_NAME'] %>
+  database: fish_review_test
   pool: 5
   username: <%= ENV['DATABASE_DEV_USER'] %>
   password: <%= ENV['DATABASE_DEV_PASSWORD'] %>
@@ -52,7 +52,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: <%= ENV['DATABASE_DEV_NAME'] %>
+  database: fish_review_production
   pool: 5
   username: <%= ENV['DATABASE_DEV_USER'] %>
   password: <%= ENV['DATABASE_DEV_PASSWORD'] %>
