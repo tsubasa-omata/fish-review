@@ -33,6 +33,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.7'
 end
 
@@ -46,6 +47,7 @@ group :development do
   # 自分で入れた bundle installで入れた
   gem 'rubocop', require: false
   gem 'rubocop-rails'
+  gem 'solargraph'
 end
 
 group :test do

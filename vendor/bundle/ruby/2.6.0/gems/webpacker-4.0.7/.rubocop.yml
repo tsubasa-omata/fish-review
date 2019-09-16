@@ -8,6 +8,10 @@ AllCops:
     - 'vendor/**/*'
     - 'node_modules/**/*'
 
+#自分で追加
+Rails:
+  Enabled: true
+  
 # Prefer &&/|| over and/or.
 Style/AndOr:
   Enabled: true
