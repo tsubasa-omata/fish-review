@@ -1,0 +1,7 @@
+<h1>Image作成</h1>
+<%= form_with model: @user, local: true do |form| %>
+  
+  <%= form.label :picture %>
+  <%= form.file_field :picture %>
+  <p><%= form.submit %></p>
+<% end %>
