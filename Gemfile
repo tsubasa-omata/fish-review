@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.7'
 #自分で追加
 # for image uploader with AWS S3
 gem 'carrierwave'
-gem 'fog'
+gem 'fog-aws'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
