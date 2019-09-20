@@ -1,3 +1,9 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
+<% if @user.picture? %>
 <div><%= image_tag @user.picture.to_s %></div>
+<% else %>
+<p>a</p>
+<% end %>
+
+ 
