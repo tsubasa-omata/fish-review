@@ -7,7 +7,8 @@ services:
     ports:
       - "4306:3306"  #　ホストマシンからアクセスする際の番号:ローカル側（dockerネットワークないの番号）
     #volumes:
-    #  - ./mysql-datavolume:/var/lib/mysql  #ローカルのdocker-compose.ymlと同じディレクトリにmysql-datavolumeというファイルを作りdockerコンテナ上の/var/lib/mysqlでマウントする
+     # - ./mysql-datavolume:/var/lib/mysql  #ローカルのdocker-compose.ymlと同じディレクトリにmysql-datavolumeというファイルを作りdockerコンテナ上の/var/lib/mysqlでマウントする
+      #- "bundle:/usr/local/bundle"
 
   web:
     build: .
@@ -18,3 +19,8 @@ services:
       - "4000:4000"
     depends_on:
       - db
+
+ #volumes: # このようにトップレベルでvolumesを指定すると、名前付きボリュームになる。
+  #bundle:
+   # driver: local # bundleを使う際のdriverとしてlocalを指定
+  #mysql-datavolume:
