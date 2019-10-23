@@ -3,7 +3,21 @@
   
   <%= form.label :name %>
   <%= form.text_field :name %>
+
+  <%= form.label :name %>
+  <%= form.text_field :user_id_name %>
+
+  <%= form.label :'メールアドレス' %>
+  <%= form.text_field :email %>
+
+  <%= form.label :'パスワード'%>
+  <%= form.password_field :password %>
+
+  <%= form.label :'パスワード(確認)'%>
+  <%= form.password_field :password_confirmation %>
+
   <%= form.label :picture %>
   <%= form.file_field :picture %>
+
   <p><%= form.submit %></p>
 <% end %>

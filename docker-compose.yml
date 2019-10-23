@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "4306:3306"  #　ホストマシンからアクセスする際の番号:ローカル側（dockerネットワークないの番号）
+    #volumes:
+    #  - ./mysql-datavolume:/var/lib/mysql  #ローカルのdocker-compose.ymlと同じディレクトリにmysql-datavolumeというファイルを作りdockerコンテナ上の/var/lib/mysqlでマウントする
+
+  web:
+    build: .
+    command: bundle exec rails s -p 4000 -b '0.0.0.0'
+    volumes:
+      - .:/fish-review
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db

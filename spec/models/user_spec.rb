@@ -35,4 +35,19 @@ RSpec.describe User, type: :model do
     @user.save!
     expect(@user.reload.email).to eq 'user@example.com'
   end
+  context ' user_id_name should be unique' do
+    it '一意性が正しく機能しているか' do
+      duplicate_user = @user.dup
+      duplicate_user.user_id_name = @user.user_id_name.upcase
+      @user.save!  #例外を返すようにすることでDBに値が保存されていることを保証する為
+      expect(duplicate_user).to be_invalid
+    end
+  end
+
+  it ' user_id_nameを小文字に変換後の値が大文字と小文字を混ぜて登録されたアドレスと同じか ' do
+    mix_case_user_id_name = 'EXAmple USer'
+    @user.user_id_name = mix_case_user_id_name
+    @user.save!
+    expect(@user.reload.user_id_name).to eq 'Example User'
+  end
 end
