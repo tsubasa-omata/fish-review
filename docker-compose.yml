@@ -4,6 +4,7 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+     # MYSQL_DATABASE: root
     ports:
       - "4306:3306"  #　ホストマシンからアクセスする際の番号:ローカル側（dockerネットワークないの番号）
     #volumes:
