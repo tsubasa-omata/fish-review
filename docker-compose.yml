@@ -1,27 +1,34 @@
 version: '3'
 services:
   db:
-    image: mysql:5.7
+    image: mysql:5.7.22
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-     # MYSQL_DATABASE: root
     ports:
-      - "4306:3306"  #　ホストマシンからアクセスする際の番号:ローカル側（dockerネットワークないの番号）
-    #volumes:
-     # - ./mysql-datavolume:/var/lib/mysql  #ローカルのdocker-compose.ymlと同じディレクトリにmysql-datavolumeというファイルを作りdockerコンテナ上の/var/lib/mysqlでマウントする
-      #- "bundle:/usr/local/bundle"
-
+      - "4305:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./mysqlconf:/etc/mysql/conf.d
   web:
     build: .
-    command: bundle exec rails s -p 4000 -b '0.0.0.0'
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
     volumes:
       - .:/fish-review
+      - bundle:/bundle
     ports:
       - "4000:4000"
-    depends_on:
+    links:
       - db
-
- #volumes: # このようにトップレベルでvolumesを指定すると、名前付きボリュームになる。
-  #bundle:
-   # driver: local # bundleを使う際のdriverとしてlocalを指定
-  #mysql-datavolume:
+    environment:
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: ""
+      DATABASE_HOSTNAME: db
+      DATABASE_NAME: fish-review
+      
+    tty: true
+    stdin_open: true
+volumes:
+  db-data:
+    driver: local
+  bundle:
+    driver: local
