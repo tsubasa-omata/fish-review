@@ -1,14 +1,18 @@
 <h1>Image作成</h1>
 <%= form_with model: @user, local: true do |form| %>
   
-  <%= form.label :name %>
+  <%= form.label :'ユーザー名' %>
   <%= form.text_field :name %>
 
-  <%= form.label :name %>
-  <%= form.text_field :user_id_name %>
+  <%= form.label :'アカウントID' %> 
+  <%= form.text_field :account_name %>
 
   <%= form.label :'メールアドレス' %>
   <%= form.text_field :email %>
+
+  <%= form.label :'プロフィール' %>
+  <%= form.text_field :prof %>
+
 
   <%= form.label :'パスワード'%>
   <%= form.password_field :password %>

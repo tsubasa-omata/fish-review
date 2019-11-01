@@ -32,6 +32,8 @@ gem 'fog-aws'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 
+gem 'execjs', '2.7.0'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

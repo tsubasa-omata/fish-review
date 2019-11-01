@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user , only:[:show]
+  before_action :correct_user,   only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy] #admin edit でこれはlogin　しているから回避できる
   def index
-   @user = User.first
+    @user = User.all
   end
 
   def new
@@ -9,19 +12,28 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
-    flash[:notice] = ' 画像を保存しました '
+    if @user.save                                       #ここでbefore_actionのcreate_activation_digestが実行される。
+      @user.send_activation_email                      #このsend_activation_emailメソッドの中のaccount_activationはuser_mailerのメソッド？それともuser_mailer_previewのメソッド？
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+    @user = User.find_by(id: params[:id])
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:picture,
-                                 :name,
-                                 :password,
-                                 :password_confirmation,
+    params.require(:user).permit(:name,
                                  :email,
-                                 :user_id_name
+                                 :password_confirmation,
+                                 :picture,
+                                 :account_name
                                   )
   end
+  
 end
